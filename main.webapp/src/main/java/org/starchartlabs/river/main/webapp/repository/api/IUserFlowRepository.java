@@ -14,18 +14,18 @@ import java.util.Collection;
 import java.util.Optional;
 import java.util.UUID;
 
-import org.starchartlabs.river.main.webapp.domain.model.Project;
-import org.starchartlabs.river.main.webapp.domain.model.ProjectFields;
+import org.starchartlabs.river.main.webapp.domain.model.UserFlow;
+import org.starchartlabs.river.main.webapp.domain.model.UserFlowFields;
 
 //TODO romeara doc
-public interface IProjectRepository {
+public interface IUserFlowRepository {
 
-    Project create(ProjectFields fields);
+    UserFlow create(UserFlowFields fields);
 
-    Optional<Project> get(UUID id);
+    Optional<UserFlow> get(UUID id);
 
-    Collection<Project> get();
+    Collection<UserFlow> getByProject(UUID projectId);
 
-    boolean delete(Project project);
+    boolean delete(UserFlow userFlow);
 
 }

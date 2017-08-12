@@ -13,7 +13,9 @@ package org.starchartlabs.river.main.webapp.repository.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.starchartlabs.river.main.webapp.repository.api.IProjectRepository;
+import org.starchartlabs.river.main.webapp.repository.api.IUserFlowRepository;
 import org.starchartlabs.river.main.webapp.repository.impl.MemoryProjectRepository;
+import org.starchartlabs.river.main.webapp.repository.impl.MemoryUserFlowRepository;
 
 //TODO romeara doc
 @Configuration
@@ -22,6 +24,11 @@ public class RepositoryConfiguration {
     @Bean
     public IProjectRepository projectRepository() {
         return new MemoryProjectRepository();
+    }
+
+    @Bean
+    public IUserFlowRepository userFlowRepository() {
+        return new MemoryUserFlowRepository();
     }
 
 }

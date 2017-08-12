@@ -13,8 +13,11 @@ package org.starchartlabs.river.main.webapp.app.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.starchartlabs.river.main.webapp.app.api.IProjectAppService;
+import org.starchartlabs.river.main.webapp.app.api.IUserFlowAppService;
 import org.starchartlabs.river.main.webapp.app.impl.ProjectAppService;
+import org.starchartlabs.river.main.webapp.app.impl.UserFlowAppService;
 import org.starchartlabs.river.main.webapp.repository.api.IProjectRepository;
+import org.starchartlabs.river.main.webapp.repository.api.IUserFlowRepository;
 
 //TODO romeara doc
 @Configuration
@@ -24,4 +27,10 @@ public class AppServiceConfiguration {
     public IProjectAppService projectAppService(IProjectRepository projectRepository) {
         return new ProjectAppService(projectRepository);
     }
+
+    @Bean
+    public IUserFlowAppService userFlowAppService(IUserFlowRepository userFlowRepository) {
+        return new UserFlowAppService(userFlowRepository);
+    }
+
 }

@@ -10,8 +10,6 @@
  */
 package org.starchartlabs.river.main.webapp.app.model;
 
-import java.util.Collections;
-import java.util.List;
 import java.util.Objects;
 
 import javax.annotation.Nullable;
@@ -20,46 +18,42 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.MoreObjects;
 
 //TODO romeara doc, test
-public class MetaDataView {
+public class LinkView {
+
+    @JsonProperty(value = "rel", required = true)
+    private final String rel;
 
     @JsonProperty(value = "href", required = true)
     private final String href;
 
-    @JsonProperty(value = "links", required = true)
-    private final List<LinkView> links;
-
-    public MetaDataView(String href) {
-        this(href, Collections.emptyList());
+    public LinkView(String rel, String href) {
+        this.rel = Objects.requireNonNull(rel);
+        this.href = Objects.requireNonNull(href);
     }
 
-    public MetaDataView(String href, List<LinkView> links) {
-        this.href = Objects.requireNonNull(href);
-        this.links = Objects.requireNonNull(links);
+    public String getRel() {
+        return rel;
     }
 
     public String getHref() {
         return href;
     }
 
-    public List<LinkView> getLinks() {
-        return links;
-    }
-
     @Override
     public int hashCode() {
-        return Objects.hash(getHref(),
-                getLinks());
+        return Objects.hash(getRel(),
+                getHref());
     }
 
     @Override
     public boolean equals(@Nullable Object obj) {
         boolean result = false;
 
-        if (obj instanceof MetaDataView) {
-            MetaDataView compare = (MetaDataView) obj;
+        if (obj instanceof LinkView) {
+            LinkView compare = (LinkView) obj;
 
-            result = Objects.equals(getHref(), compare.getHref())
-                    && Objects.equals(getLinks(), compare.getLinks());
+            result = Objects.equals(getRel(), compare.getRel())
+                    && Objects.equals(getHref(), compare.getHref());
         }
 
         return result;
@@ -68,8 +62,8 @@ public class MetaDataView {
     @Override
     public String toString() {
         return MoreObjects.toStringHelper(getClass()).omitNullValues()
+                .add("rel", getRel())
                 .add("href", getHref())
-                .add("links", getLinks())
                 .toString();
     }
 

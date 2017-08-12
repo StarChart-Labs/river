@@ -40,21 +40,6 @@ public class MemoryProjectRepository implements IProjectRepository {
     }
 
     @Override
-    public Optional<Project> update(UUID id, ProjectFields fields) {
-        Objects.requireNonNull(id);
-        Objects.requireNonNull(fields);
-
-        Project result = null;
-
-        if (projects.containsKey(id)) {
-            result = new Project(id, fields);
-            projects.put(result.getId(), result);
-        }
-
-        return Optional.ofNullable(result);
-    }
-
-    @Override
     public Optional<Project> get(UUID id) {
         Objects.requireNonNull(id);
 

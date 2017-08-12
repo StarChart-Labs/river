@@ -13,7 +13,9 @@ package org.starchartlabs.river.main.webapp.server.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.starchartlabs.river.main.webapp.app.api.IProjectAppService;
+import org.starchartlabs.river.main.webapp.app.api.IUserFlowAppService;
 import org.starchartlabs.river.main.webapp.server.impl.ProjectRestServer;
+import org.starchartlabs.river.main.webapp.server.impl.UserFlowRestServer;
 
 //TODO romeara doc
 @Configuration
@@ -23,4 +25,10 @@ public class ServerConfiguration {
     public ProjectRestServer projectRestServer(IProjectAppService projectAppService) {
         return new ProjectRestServer(projectAppService);
     }
+
+    @Bean
+    public UserFlowRestServer userFlowRestServer(IUserFlowAppService userFlowAppService) {
+        return new UserFlowRestServer(userFlowAppService);
+    }
+
 }
