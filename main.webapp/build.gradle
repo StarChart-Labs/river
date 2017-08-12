@@ -1,9 +1,12 @@
 apply plugin: 'application'
 
-mainClassName = "org.starchartlabs.tempest.main.app.Tempest"
+mainClassName = "org.starchartlabs.river.main.webapp.River"
 
 //Dependency versions managed in $rootDir/dependencies.lock
 dependencies {
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-web'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-actuator'
+    
+    compile group: 'com.google.code.findbugs', name: 'jsr305'
+    compile group: 'com.google.guava', name: 'guava'
 }
