@@ -19,6 +19,8 @@ import com.google.common.collect.ImmutableMap;
 //TODO romeara doc
 public class RequestPaths {
 
+    public static final String ROOT = "/";
+
     public static final String PROJECT_LIST = "/projects";
 
     public static final String PROJECT = "/projects/{projectId}";

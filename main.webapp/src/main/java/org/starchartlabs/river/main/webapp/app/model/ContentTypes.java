@@ -13,6 +13,8 @@ package org.starchartlabs.river.main.webapp.app.model;
 //TODO romeara doc
 public class ContentTypes {
 
+    public static final String HTML = "text/html";
+
     public static final String JSON = "application/json";
 
     public static final String STARCHART_V1 = "application/org.starchartlabs.v1+json";

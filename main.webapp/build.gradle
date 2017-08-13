@@ -6,6 +6,7 @@ mainClassName = "org.starchartlabs.river.main.webapp.River"
 dependencies {
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-web'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-actuator'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-thymeleaf'
     
     compile group: 'com.google.code.findbugs', name: 'jsr305'
     compile group: 'com.google.guava', name: 'guava'
