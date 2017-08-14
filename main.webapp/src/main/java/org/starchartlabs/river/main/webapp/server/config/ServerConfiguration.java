@@ -12,8 +12,10 @@ package org.starchartlabs.river.main.webapp.server.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.starchartlabs.river.main.webapp.app.api.IExperienceAppService;
 import org.starchartlabs.river.main.webapp.app.api.IProjectAppService;
 import org.starchartlabs.river.main.webapp.app.api.IUserFlowAppService;
+import org.starchartlabs.river.main.webapp.server.impl.ExperienceRestServer;
 import org.starchartlabs.river.main.webapp.server.impl.ProjectRestServer;
 import org.starchartlabs.river.main.webapp.server.impl.RootRestServer;
 import org.starchartlabs.river.main.webapp.server.impl.UserFlowRestServer;
@@ -35,6 +37,11 @@ public class ServerConfiguration {
     @Bean
     public UserFlowRestServer userFlowRestServer(IUserFlowAppService userFlowAppService) {
         return new UserFlowRestServer(userFlowAppService);
+    }
+
+    @Bean
+    public ExperienceRestServer experienceRestServer(IExperienceAppService experienceAppService) {
+        return new ExperienceRestServer(experienceAppService);
     }
 
 }

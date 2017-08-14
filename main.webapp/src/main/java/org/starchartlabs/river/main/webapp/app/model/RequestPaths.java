@@ -29,6 +29,10 @@ public class RequestPaths {
 
     public static final String USER_FLOW = "/projects/{projectId}/userflows/{userFlowId}";
 
+    public static final String EXPERIENCE_LIST = "/projects/{projectId}/userflows/{userFlowId}/experiences";
+
+    public static final String EXPERIENCE = "/projects/{projectId}/userflows/{userFlowId}/experiences/{experienceId}";
+
     /**
      * Prevent instantiation of utility class
      */
@@ -64,6 +68,25 @@ public class RequestPaths {
                 .buildAndExpand(ImmutableMap.of(
                         "projectId", projectId.toString(),
                         "userFlowId", userFlowId.toString()))
+                .toUriString();
+    }
+
+    public static String getExperienceListUrl(UUID projectId, UUID userFlowId) {
+        return UriBuilders.getLocalServerUriBuilder()
+                .path(EXPERIENCE_LIST)
+                .buildAndExpand(ImmutableMap.of(
+                        "projectId", projectId.toString(),
+                        "userFlowId", userFlowId.toString()))
+                .toUriString();
+    }
+
+    public static String getExperienceUrl(UUID projectId, UUID userFlowId, UUID experienceId) {
+        return UriBuilders.getLocalServerUriBuilder()
+                .path(EXPERIENCE_LIST)
+                .buildAndExpand(ImmutableMap.of(
+                        "projectId", projectId.toString(),
+                        "userFlowId", userFlowId.toString(),
+                        "experienceId", experienceId.toString()))
                 .toUriString();
     }
 }

@@ -12,8 +12,10 @@ package org.starchartlabs.river.main.webapp.repository.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.starchartlabs.river.main.webapp.repository.api.IExperienceRepository;
 import org.starchartlabs.river.main.webapp.repository.api.IProjectRepository;
 import org.starchartlabs.river.main.webapp.repository.api.IUserFlowRepository;
+import org.starchartlabs.river.main.webapp.repository.impl.MemoryExperienceRepository;
 import org.starchartlabs.river.main.webapp.repository.impl.MemoryProjectRepository;
 import org.starchartlabs.river.main.webapp.repository.impl.MemoryUserFlowRepository;
 
@@ -29,6 +31,11 @@ public class RepositoryConfiguration {
     @Bean
     public IUserFlowRepository userFlowRepository() {
         return new MemoryUserFlowRepository();
+    }
+
+    @Bean
+    public IExperienceRepository experienceRepository() {
+        return new MemoryExperienceRepository();
     }
 
 }
