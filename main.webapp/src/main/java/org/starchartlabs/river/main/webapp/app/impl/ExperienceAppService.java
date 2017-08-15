@@ -10,6 +10,7 @@
  */
 package org.starchartlabs.river.main.webapp.app.impl;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -19,6 +20,7 @@ import java.util.stream.Collectors;
 import org.starchartlabs.river.main.webapp.app.api.IExperienceAppService;
 import org.starchartlabs.river.main.webapp.app.model.ExperienceRequest;
 import org.starchartlabs.river.main.webapp.app.model.ExperienceView;
+import org.starchartlabs.river.main.webapp.app.model.LinkView;
 import org.starchartlabs.river.main.webapp.app.model.MetaDataView;
 import org.starchartlabs.river.main.webapp.app.model.PageView;
 import org.starchartlabs.river.main.webapp.app.model.RequestPaths;
@@ -102,9 +104,12 @@ public class ExperienceAppService implements IExperienceAppService {
     private ExperienceView toView(UserFlow userFlow, Experience experience) {
         Objects.requireNonNull(experience);
 
+        LinkView notesLink = new LinkView("notes",
+                RequestPaths.getNoteListUrl(userFlow.getProjectId(), userFlow.getId(), experience.getId()));
+
         MetaDataView metaData = new MetaDataView(
-                RequestPaths.getExperienceUrl(userFlow.getProjectId(), experience.getUserFlowId(),
-                        experience.getId()));
+                RequestPaths.getExperienceUrl(userFlow.getProjectId(), experience.getUserFlowId(), experience.getId()),
+                Arrays.asList(notesLink));
 
         return new ExperienceView(
                 experience.getUser(),

@@ -33,6 +33,10 @@ public class RequestPaths {
 
     public static final String EXPERIENCE = "/projects/{projectId}/userflows/{userFlowId}/experiences/{experienceId}";
 
+    public static final String NOTE_LIST = "/projects/{projectId}/userflows/{userFlowId}/experiences/{experienceId}/notes";
+
+    public static final String NOTE = "/projects/{projectId}/userflows/{userFlowId}/experiences/{experienceId}/notes/{noteId}";
+
     /**
      * Prevent instantiation of utility class
      */
@@ -82,11 +86,32 @@ public class RequestPaths {
 
     public static String getExperienceUrl(UUID projectId, UUID userFlowId, UUID experienceId) {
         return UriBuilders.getLocalServerUriBuilder()
-                .path(EXPERIENCE_LIST)
+                .path(EXPERIENCE)
                 .buildAndExpand(ImmutableMap.of(
                         "projectId", projectId.toString(),
                         "userFlowId", userFlowId.toString(),
                         "experienceId", experienceId.toString()))
+                .toUriString();
+    }
+
+    public static String getNoteListUrl(UUID projectId, UUID userFlowId, UUID experienceId) {
+        return UriBuilders.getLocalServerUriBuilder()
+                .path(NOTE_LIST)
+                .buildAndExpand(ImmutableMap.of(
+                        "projectId", projectId.toString(),
+                        "userFlowId", userFlowId.toString(),
+                        "experienceId", experienceId.toString()))
+                .toUriString();
+    }
+
+    public static String getNoteUrl(UUID projectId, UUID userFlowId, UUID experienceId, UUID noteId) {
+        return UriBuilders.getLocalServerUriBuilder()
+                .path(NOTE)
+                .buildAndExpand(ImmutableMap.of(
+                        "projectId", projectId.toString(),
+                        "userFlowId", userFlowId.toString(),
+                        "experienceId", experienceId.toString(),
+                        "noteId", noteId.toString()))
                 .toUriString();
     }
 }

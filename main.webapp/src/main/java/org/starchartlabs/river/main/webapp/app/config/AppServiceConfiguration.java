@@ -13,12 +13,15 @@ package org.starchartlabs.river.main.webapp.app.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.starchartlabs.river.main.webapp.app.api.IExperienceAppService;
+import org.starchartlabs.river.main.webapp.app.api.INoteAppService;
 import org.starchartlabs.river.main.webapp.app.api.IProjectAppService;
 import org.starchartlabs.river.main.webapp.app.api.IUserFlowAppService;
 import org.starchartlabs.river.main.webapp.app.impl.ExperienceAppService;
+import org.starchartlabs.river.main.webapp.app.impl.NoteAppService;
 import org.starchartlabs.river.main.webapp.app.impl.ProjectAppService;
 import org.starchartlabs.river.main.webapp.app.impl.UserFlowAppService;
 import org.starchartlabs.river.main.webapp.repository.api.IExperienceRepository;
+import org.starchartlabs.river.main.webapp.repository.api.INoteRepository;
 import org.starchartlabs.river.main.webapp.repository.api.IProjectRepository;
 import org.starchartlabs.river.main.webapp.repository.api.IUserFlowRepository;
 
@@ -40,6 +43,11 @@ public class AppServiceConfiguration {
     public IExperienceAppService experienceAppService(IUserFlowRepository userFlowRepository,
             IExperienceRepository experienceRepository) {
         return new ExperienceAppService(userFlowRepository, experienceRepository);
+    }
+
+    @Bean
+    public INoteAppService noteAppService(INoteRepository noteRepository) {
+        return new NoteAppService(noteRepository);
     }
 
 }
