@@ -80,4 +80,20 @@ public class ProjectRestServer {
 
         return new ResponseEntity<>(status);
     }
+
+    @ResponseBody
+    @RequestMapping(method = RequestMethod.GET, path = RequestPaths.PROJECT,
+    produces = { ContentTypes.HTML })
+    public String getProjectHtml(@PathVariable("projectId") UUID projectId) {
+        // TODO ui - project page
+
+        // The project page should contain:
+        // A list of existing user flows (GET on project._meta.links[userflows])
+        // A control to create a new user flow (POST on project._meta.links[userflows], Request as specified in
+        // UserFlowRequest class)
+        // A control to delete a user flow (DELETE on URL on each userflow._meta.href)
+        // A control to go to the detail page of each user flow (GET on URL on each userflow._meta.href)
+
+        return "todo-ui";
+    }
 }

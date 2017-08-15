@@ -31,6 +31,8 @@ public class RequestPaths {
 
     public static final String EXPERIENCE_LIST = "/projects/{projectId}/userflows/{userFlowId}/experiences";
 
+    public static final String EXPERIENCE_CREATE = "/projects/{projectId}/userflows/{userFlowId}/experiences/new";
+
     public static final String EXPERIENCE = "/projects/{projectId}/userflows/{userFlowId}/experiences/{experienceId}";
 
     public static final String NOTE_LIST = "/projects/{projectId}/userflows/{userFlowId}/experiences/{experienceId}/notes";
@@ -78,6 +80,15 @@ public class RequestPaths {
     public static String getExperienceListUrl(UUID projectId, UUID userFlowId) {
         return UriBuilders.getLocalServerUriBuilder()
                 .path(EXPERIENCE_LIST)
+                .buildAndExpand(ImmutableMap.of(
+                        "projectId", projectId.toString(),
+                        "userFlowId", userFlowId.toString()))
+                .toUriString();
+    }
+
+    public static String getExperienceCreateUrl(UUID projectId, UUID userFlowId) {
+        return UriBuilders.getLocalServerUriBuilder()
+                .path(EXPERIENCE_CREATE)
                 .buildAndExpand(ImmutableMap.of(
                         "projectId", projectId.toString(),
                         "userFlowId", userFlowId.toString()))

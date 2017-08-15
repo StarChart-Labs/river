@@ -44,13 +44,14 @@ public class ServerConfiguration {
     }
 
     @Bean
-    public ExperienceRestServer experienceRestServer(IExperienceAppService experienceAppService) {
-        return new ExperienceRestServer(experienceAppService);
+    public ExperienceRestServer experienceRestServer(IExperienceAppService experienceAppService,
+            IMarkdownAppService markdownAppService) {
+        return new ExperienceRestServer(experienceAppService, markdownAppService);
     }
 
     @Bean
-    public NoteRestServer noteRestServer(INoteAppService noteAppService, IMarkdownAppService markdownAppService) {
-        return new NoteRestServer(noteAppService, markdownAppService);
+    public NoteRestServer noteRestServer(INoteAppService noteAppService) {
+        return new NoteRestServer(noteAppService);
     }
 
 }

@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.starchartlabs.river.main.webapp.app.api.IExperienceAppService;
+import org.starchartlabs.river.main.webapp.app.api.IMarkdownAppService;
 import org.starchartlabs.river.main.webapp.app.model.ContentTypes;
 import org.starchartlabs.river.main.webapp.app.model.ExperienceRequest;
 import org.starchartlabs.river.main.webapp.app.model.ExperienceView;
@@ -36,8 +37,11 @@ public class ExperienceRestServer {
 
     private final IExperienceAppService experienceAppService;
 
-    public ExperienceRestServer(IExperienceAppService experienceAppService) {
+    private final IMarkdownAppService markdownAppService;
+
+    public ExperienceRestServer(IExperienceAppService experienceAppService, IMarkdownAppService markdownAppService) {
         this.experienceAppService = Objects.requireNonNull(experienceAppService);
+        this.markdownAppService = Objects.requireNonNull(markdownAppService);
     }
 
     @ResponseBody
@@ -84,6 +88,42 @@ public class ExperienceRestServer {
         HttpStatus status = (found ? HttpStatus.NO_CONTENT : HttpStatus.NOT_FOUND);
 
         return new ResponseEntity<>(status);
+    }
+
+    @ResponseBody
+    @RequestMapping(method = RequestMethod.GET, path = RequestPaths.EXPERIENCE_CREATE,
+    produces = { ContentTypes.HTML })
+    public String getExperienceCreateHtml(@PathVariable("projectId") UUID projectId,
+            @PathVariable("userFlowId") UUID userFlowId) {
+        // TODO ui - create experience page
+
+        // The create experience page should contain:
+        // A box for a user to enter a name. When completed, POST on userflow._meta.links[experiences], Request as
+        // specified in ExperienceRequest class)
+
+        return "todo-ui";
+    }
+
+    @ResponseBody
+    @RequestMapping(method = RequestMethod.GET, path = RequestPaths.EXPERIENCE,
+    produces = { ContentTypes.HTML })
+    public String getExperienceHtml(@PathVariable("projectId") UUID projectId,
+            @PathVariable("userFlowId") UUID userFlowId, @PathVariable("experienceId") UUID experienceId) {
+        // TODO ui - experience page
+
+        // Note - markdown in standard JSON-based response can be transform via markdownAppService for HTML display
+
+        // The experience page should contain:
+        // A list of existing notes (GET on experience._meta.links[notes])
+        // A control to create a new note with type "CLEAR" or "CONFUSING" (POST on experience._meta.links[userflows],
+        // Request as specified in
+        // NoteRequest class)
+        // A control to delete a note (DELETE on URL on each note._meta.href)
+        // A control to complete the experience (note with type "BLOCKED" or "COMPLETED" (POST on
+        // experience._meta.links[userflows], Request as specified in
+        // NoteRequest class)
+
+        return "todo-ui";
     }
 
 }

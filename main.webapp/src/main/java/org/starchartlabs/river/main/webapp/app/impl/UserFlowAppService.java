@@ -90,10 +90,12 @@ public class UserFlowAppService implements IUserFlowAppService {
 
         LinkView experiencesLink = new LinkView("experiences",
                 RequestPaths.getExperienceListUrl(userFlow.getProjectId(), userFlow.getId()));
+        LinkView experienceCreateLink = new LinkView("create-experience",
+                RequestPaths.getExperienceCreateUrl(userFlow.getProjectId(), userFlow.getId()));
 
         MetaDataView metaData = new MetaDataView(
                 RequestPaths.getUserFlowUrl(userFlow.getProjectId(), userFlow.getId()),
-                Arrays.asList(experiencesLink));
+                Arrays.asList(experiencesLink, experienceCreateLink));
 
         return new UserFlowView(
                 userFlow.getName(),

@@ -88,4 +88,21 @@ public class UserFlowRestServer {
         return new ResponseEntity<>(status);
     }
 
+    @ResponseBody
+    @RequestMapping(method = RequestMethod.GET, path = RequestPaths.USER_FLOW,
+    produces = { ContentTypes.HTML })
+    public String getUserFlowHtml(@PathVariable("projectId") UUID projectId,
+            @PathVariable("userFlowId") UUID userFlowId) {
+        // TODO ui - userflow page
+
+        // Note - markdown in standard JSON-based response can be transform via markdownAppService for HTML display
+
+        // The userflow page should contain:
+        // A display of the "create experience" link to be shared (userflow._meta.links[create-experience])
+        // A list of existing experiences (GET on userflow._meta.links[experiences])
+        // A control to delete an experience (DELETE on URL on each experience._meta.href)
+        // A control to go to the detail page of each experience (GET on URL on each experience._meta.href)
+
+        return "todo-ui";
+    }
 }

@@ -25,7 +25,7 @@ public class RootRestServer {
 
         // The home page should contain:
         // A list of existing projects (GET on /projects)
-        // A control to create a new project (POST on /projects, Request as specific in ProjectRequest class)
+        // A control to create a new project (POST on /projects, Request as specified in ProjectRequest class)
         // A control to delete a project (DELETE on URL on each project._meta.href)
         // A control to go to the detail page of each project (GET on URL on each project._meta.href)
 
