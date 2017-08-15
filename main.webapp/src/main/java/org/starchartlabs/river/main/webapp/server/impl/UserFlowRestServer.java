@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.starchartlabs.river.main.webapp.app.api.IMarkdownAppService;
 import org.starchartlabs.river.main.webapp.app.api.IUserFlowAppService;
 import org.starchartlabs.river.main.webapp.app.model.ContentTypes;
 import org.starchartlabs.river.main.webapp.app.model.PageView;
@@ -36,8 +37,11 @@ public class UserFlowRestServer {
 
     private final IUserFlowAppService userFlowAppService;
 
-    public UserFlowRestServer(IUserFlowAppService userFlowAppService) {
+    private final IMarkdownAppService markdownAppService;
+
+    public UserFlowRestServer(IUserFlowAppService userFlowAppService, IMarkdownAppService markdownAppService) {
         this.userFlowAppService = Objects.requireNonNull(userFlowAppService);
+        this.markdownAppService = Objects.requireNonNull(markdownAppService);
     }
 
     @ResponseBody

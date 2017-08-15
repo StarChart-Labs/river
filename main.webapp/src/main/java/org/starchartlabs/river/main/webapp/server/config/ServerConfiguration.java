@@ -13,6 +13,7 @@ package org.starchartlabs.river.main.webapp.server.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.starchartlabs.river.main.webapp.app.api.IExperienceAppService;
+import org.starchartlabs.river.main.webapp.app.api.IMarkdownAppService;
 import org.starchartlabs.river.main.webapp.app.api.INoteAppService;
 import org.starchartlabs.river.main.webapp.app.api.IProjectAppService;
 import org.starchartlabs.river.main.webapp.app.api.IUserFlowAppService;
@@ -37,8 +38,9 @@ public class ServerConfiguration {
     }
 
     @Bean
-    public UserFlowRestServer userFlowRestServer(IUserFlowAppService userFlowAppService) {
-        return new UserFlowRestServer(userFlowAppService);
+    public UserFlowRestServer userFlowRestServer(IUserFlowAppService userFlowAppService,
+            IMarkdownAppService markdownAppService) {
+        return new UserFlowRestServer(userFlowAppService, markdownAppService);
     }
 
     @Bean
@@ -47,8 +49,8 @@ public class ServerConfiguration {
     }
 
     @Bean
-    public NoteRestServer noteRestServer(INoteAppService noteAppService) {
-        return new NoteRestServer(noteAppService);
+    public NoteRestServer noteRestServer(INoteAppService noteAppService, IMarkdownAppService markdownAppService) {
+        return new NoteRestServer(noteAppService, markdownAppService);
     }
 
 }

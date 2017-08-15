@@ -13,10 +13,12 @@ package org.starchartlabs.river.main.webapp.app.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.starchartlabs.river.main.webapp.app.api.IExperienceAppService;
+import org.starchartlabs.river.main.webapp.app.api.IMarkdownAppService;
 import org.starchartlabs.river.main.webapp.app.api.INoteAppService;
 import org.starchartlabs.river.main.webapp.app.api.IProjectAppService;
 import org.starchartlabs.river.main.webapp.app.api.IUserFlowAppService;
 import org.starchartlabs.river.main.webapp.app.impl.ExperienceAppService;
+import org.starchartlabs.river.main.webapp.app.impl.MarkdownAppService;
 import org.starchartlabs.river.main.webapp.app.impl.NoteAppService;
 import org.starchartlabs.river.main.webapp.app.impl.ProjectAppService;
 import org.starchartlabs.river.main.webapp.app.impl.UserFlowAppService;
@@ -48,6 +50,11 @@ public class AppServiceConfiguration {
     @Bean
     public INoteAppService noteAppService(INoteRepository noteRepository) {
         return new NoteAppService(noteRepository);
+    }
+
+    @Bean
+    public IMarkdownAppService markdownAppService() {
+        return new MarkdownAppService();
     }
 
 }
