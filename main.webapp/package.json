@@ -11,7 +11,7 @@
     "url": "git+https://github.com/StarChart-Labs/river.git"
   },
   "author": "",
-  "license": "Apache 2.0",
+  "license": "Apache-2.0",
   "homepage": "https://github.com/StarChart-Labs/river",
   "devDependencies": {
     "webpack": "^3.4.1",
