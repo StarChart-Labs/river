@@ -1,4 +1,5 @@
 apply plugin: 'application'
+apply plugin: 'com.moowork.node'
 
 mainClassName = "org.starchartlabs.river.main.webapp.River"
 
@@ -13,3 +14,20 @@ dependencies {
     compile group: 'com.google.code.findbugs', name: 'jsr305'
     compile group: 'com.google.guava', name: 'guava'
 }
+
+node {
+    // Version of node to use.
+    version = '6.11.1'
+
+    // Version of npm to use.
+    npmVersion = '3.10.10'
+    
+    // Version of Yarn to use.
+    yarnVersion = '0.27.5'
+
+    // If true, it will download node using above parameters.
+    // If false, it will try to use globally installed node.
+    download = true
+}
+
+clean.dependsOn yarn_cache_clean

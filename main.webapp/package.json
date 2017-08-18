@@ -1,0 +1,22 @@
+{
+  "name": "river",
+  "version": "0.1.0",
+  "description": "A cloud application for gathering feedback on user experiences",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/StarChart-Labs/river.git"
+  },
+  "author": "",
+  "license": "Apache 2.0",
+  "homepage": "https://github.com/StarChart-Labs/river",
+  "devDependencies": {
+    "webpack": "^3.4.1",
+    "yarn": "^0.27.5"
+  },
+  "dependencies": {
+  }
+}
