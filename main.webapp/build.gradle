@@ -36,6 +36,12 @@ task gruntDev(type: GruntAsync, dependsOn: yarn_install) {
     args = ['dev']
 }
 
+run {
+	// Remove the "built" UI resources and use the sources instead, allowing viewing of changes without a restart
+	classpath += files(sourceSets.main.resources.srcDirs)
+	classpath -= files(sourceSets.main.output.resourcesDir)
+}
+
 clean.dependsOn yarn_cache_clean
 build.dependsOn yarn_install, grunt_prod
 run.dependsOn gruntDev
