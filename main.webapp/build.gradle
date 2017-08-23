@@ -1,5 +1,6 @@
 apply plugin: 'application'
 apply plugin: 'com.moowork.node'
+apply plugin: 'com.moowork.grunt'
 
 mainClassName = "org.starchartlabs.river.main.webapp.River"
 
@@ -31,3 +32,5 @@ node {
 }
 
 clean.dependsOn yarn_cache_clean
+build.dependsOn yarn_install, grunt_prod
+run.dependsOn grunt_dev
