@@ -4,7 +4,9 @@
   "description": "A cloud application for gathering feedback on user experiences",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "lessc-each src/main/less src/main/resources/static/css",
+    "build:dev": ""
   },
   "repository": {
     "type": "git",
@@ -14,9 +16,17 @@
   "license": "Apache-2.0",
   "homepage": "https://github.com/StarChart-Labs/river",
   "devDependencies": {
+    "grunt-concurrent": "^2.3.1",
+    "grunt-contrib-less": "^1.4.1",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-webpack": "^3.0.2",
+    "less-plugin-clean-css": "^1.5.1",
     "webpack": "^3.4.1",
     "yarn": "^0.27.5"
   },
   "dependencies": {
+    "grunt": "^1.0.1",
+    "less": "^2.7.2",
+    "lessc-each": "^1.1.0"
   }
 }
