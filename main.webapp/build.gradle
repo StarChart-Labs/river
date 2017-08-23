@@ -31,6 +31,11 @@ node {
     download = true
 }
 
+//Background task for grunt task type: see ${rootDir}/buildSrc/src/main/groovy/GruntAsync.groovy
+task gruntDev(type: GruntAsync, dependsOn: yarn_install) {
+    args = ['dev']
+}
+
 clean.dependsOn yarn_cache_clean
 build.dependsOn yarn_install, grunt_prod
-run.dependsOn grunt_dev
+run.dependsOn gruntDev
