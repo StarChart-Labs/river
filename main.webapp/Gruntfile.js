@@ -2,7 +2,7 @@ const webpackConfigProd = require('./webpack.config.prod.js');
 const webpackConfigDev = require('./webpack.config.dev.js');
 
 const lessFiles = {
-    "src/main/resources/static/css/test.css": "src/main/less/test.less" // destination file and source file
+    "src/main/resources/static/css/home.css": "src/main/less/home.less" // destination file and source file
 }
 
 module.exports = function(grunt) {
