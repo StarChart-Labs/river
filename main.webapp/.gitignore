@@ -2,5 +2,8 @@
 /.settings/
 /.classpath
 /.project
+/node_modules/
 /bin/
 /build/
+/src/main/resources/static/css/*
+/src/main/resources/static/js/*
