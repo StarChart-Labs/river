@@ -14,14 +14,16 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Import;
 import org.starchartlabs.river.main.webapp.app.config.AppServiceConfiguration;
+import org.starchartlabs.river.main.webapp.app.config.ThymeleafConfiguration;
 import org.starchartlabs.river.main.webapp.repository.config.RepositoryConfiguration;
 import org.starchartlabs.river.main.webapp.server.config.ServerConfiguration;
 
 //TODO romeara doc
-@SpringBootApplication
+@SpringBootApplication(exclude={org.springframework.boot.autoconfigure.thymeleaf.ThymeleafAutoConfiguration.class})
 @Import({ RepositoryConfiguration.class,
     AppServiceConfiguration.class,
-    ServerConfiguration.class })
+    ServerConfiguration.class,
+    ThymeleafConfiguration.class})
 public class River {
 
     public static void main(String[] args) {
