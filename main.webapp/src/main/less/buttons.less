@@ -1,0 +1,47 @@
+@button-default-color: #fcfcfc;
+@button-primary-color: @color-primary;
+@button-positive-color: #60d06f;
+@button-negative-color: #d04e50;
+
+.btn {
+	border: none;
+	padding: 5px 10px;
+	box-shadow: 0px 1px 1px rgba(0,0,0,0.3);
+}
+.btn:active {
+	box-shadow: 0px 1px 1px rgba(0,0,0,0.3) inset;
+}
+.btn:hover {
+	cursor: pointer;
+}
+
+.btn-default {
+	background-color: @button-default-color;
+}
+.btn-default:active {
+	background-color: darken(@button-default-color, 10%);
+}
+
+.btn-primary {
+	background-color: @button-primary-color;
+	color: white;
+}
+.btn-primary:active {
+	background-color: darken(@button-primary-color, 10%);
+}
+
+.btn-positive {
+	background-color: @button-positive-color;
+	color: white;
+}
+.btn-positive:active {
+	background-color: darken(@button-positive-color, 10%);
+}
+
+.btn-negative {
+	background-color: @button-negative-color;
+	color: white;
+}
+.btn-negative:active {
+	background-color: darken(@button-negative-color, 10%);
+}

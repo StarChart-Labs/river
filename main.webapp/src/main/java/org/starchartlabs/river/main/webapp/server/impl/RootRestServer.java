@@ -29,7 +29,7 @@ public class RootRestServer {
         // A control to delete a project (DELETE on URL on each project._meta.href)
         // A control to go to the detail page of each project (GET on URL on each project._meta.href)
 
-        return "todo-ui";
+        return "home";
     }
 
 }
