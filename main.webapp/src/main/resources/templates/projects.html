@@ -1,0 +1,10 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:og="http://ogp.me/ns#">
+	<body>
+		<div id="project-list" th:fragment="project-list">
+			<div class="project-list-item" th:each="item : ${items}">
+				<span th:text="${item.name}"></span>
+			</div>
+		</div>
+	</body>
+</html>

@@ -18,6 +18,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -60,6 +61,15 @@ public class ProjectRestServer {
 
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
+    
+    @RequestMapping(method = RequestMethod.GET, path = RequestPaths.PROJECT_LIST,
+    produces = { ContentTypes.HTML })
+    public String getProjectsHtml(Model model) {
+        PageView<ProjectView> result = projectAppService.get();
+        model.addAttribute("items", result.getItems());
+        
+        return "projects :: project-list";
+    }
 
     @ResponseBody
     @RequestMapping(method = RequestMethod.GET, path = RequestPaths.PROJECT,
@@ -81,7 +91,6 @@ public class ProjectRestServer {
         return new ResponseEntity<>(status);
     }
 
-    @ResponseBody
     @RequestMapping(method = RequestMethod.GET, path = RequestPaths.PROJECT,
     produces = { ContentTypes.HTML })
     public String getProjectHtml(@PathVariable("projectId") UUID projectId) {

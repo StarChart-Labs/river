@@ -1,0 +1,50 @@
+/* Modal Dialog styles. Modified from W3schools examples */
+.modal {
+	opacity: 0;
+    position: fixed; /* Stay in place */
+    z-index: 10; /* Sit on top */
+    left: 0;
+    top: -100%;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+.modal-content {
+	top: -300px;
+    position: relative;
+    background-color: white;
+    border-radius: 2px;
+    margin: 40px auto;
+    padding: 0;
+    width: 60%;
+    max-height: 70%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    display: flex;
+    flex-direction: column;
+}
+.modal-header {
+	font-size: 1.1rem;
+	padding: 10px 12px 15px 12px;
+}
+i.modal-close {
+    float: right;
+    font-size: 1.3rem;
+}
+i.modal-close:hover {
+	cursor: pointer;
+}
+.modal-body {
+	padding: 0px 15px;
+	font-size: 0.9rem;
+	overflow-y: auto;
+}
+.modal-buttons {
+	padding: 10px;
+	display: flex;
+	justify-content: flex-end;
+}
+.modal-buttons button {
+	margin: 0px 5px;
+}
