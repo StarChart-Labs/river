@@ -11,7 +11,7 @@
 					<label>Name</label><input type="text" id="create-project-name">
 				</div>
 				<div class="modal-buttons">
-					<button class="btn btn-positive btn-create-project-modal">Create</button>
+					<button id="btn-create-project-modal" class="btn btn-positive">Create</button>
 					<button class="btn btn-negative modal-close">Cancel</button>
 				</div>
 			</div>
@@ -19,7 +19,7 @@
 	
 		<div th:replace="fragments/layout :: header"></div>
 		<div class="content">
-			<button class="btn btn-primary btn-create-project">Create Project</button>
+			<button id="btn-create-project" class="btn btn-primary">Create Project</button>
 			<div id="project-list">
 			
 			</div>

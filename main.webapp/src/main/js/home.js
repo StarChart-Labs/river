@@ -1,8 +1,8 @@
 import $ from 'jquery';
-import Modal from './modal';
-import Button from './button';
+import { Button, Modal } from '@starchart-labs/flightdeck';
 
 let createProjectModal;
+let createProjectNameInput;
 
 const functions = {
     loadProjectList() {
@@ -18,9 +18,8 @@ const functions = {
     },
     createProject() {
         return new Promise((resolve) => {
-            const nameInput = $('#create-project-name');
             const formData = {
-                name: nameInput.val()
+                name: createProjectNameInput.val()
             };
             fetch('/projects', {
                 method: 'POST',
@@ -30,8 +29,7 @@ const functions = {
                 body: JSON.stringify(formData)
             }).then(() => {
                 functions.loadProjectList();
-                createProjectModal.hide();
-                nameInput.val('');
+                createProjectModal.close();
                 resolve();
             });
         });
@@ -39,9 +37,10 @@ const functions = {
 };
 
 $(() => {
-    functions.loadProjectList();
+    createProjectNameInput = $('#create-project-name');
+    createProjectModal = new Modal('createProjectModal', false, () => createProjectNameInput.val(''));
+    new Button('btn-create-project').onClick(() => createProjectModal.open());
+    new Button('btn-create-project-modal').onClickAsync(functions.createProject);
     
-    createProjectModal = new Modal($('#createProjectModal'));
-    new Button($('.btn-create-project')).callback(() => createProjectModal.show());
-    new Button($('.btn-create-project-modal')).async(functions.createProject);
+    functions.loadProjectList();
 });
