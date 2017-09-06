@@ -10,6 +10,12 @@
     overflow: auto; /* Enable scroll if needed */
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    transition: opacity 0.33s, top 0s 0.33s;
+}
+.modal.open {
+	opacity: 1.0;
+	top: 0px;
+	transition: opacity 0.33s;
 }
 .modal-content {
 	top: -300px;
@@ -23,6 +29,11 @@
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
     display: flex;
     flex-direction: column;
+    transition: top 0s 0s;
+}
+.modal.open .modal-content {
+	top: 0px;
+	transition: top 0.33s;
 }
 .modal-header {
 	font-size: 1.1rem;

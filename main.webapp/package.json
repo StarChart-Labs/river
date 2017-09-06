@@ -10,7 +10,7 @@
     "type": "git",
     "url": "git+https://github.com/StarChart-Labs/river.git"
   },
-  "author": "",
+  "author": "Starchart Labs",
   "license": "Apache-2.0",
   "homepage": "https://github.com/StarChart-Labs/river",
   "devDependencies": {
@@ -27,12 +27,13 @@
     "grunt-webpack": "^3.0.2",
     "less-plugin-clean-css": "^1.5.1",
     "webpack": "^3.5.5",
-    "yarn": "^0.27.5"
+    "yarn": "^0.27.5",
+    "grunt": "^1.0.1",
+    "less": "^2.7.2"
   },
   "dependencies": {
-    "grunt": "^1.0.1",
-    "jquery": "^3.2.1",
-    "less": "^2.7.2"
+    "@starchart-labs/flightdeck": "0.2.7",
+    "jquery": "^3.2.1"
   },
   "babel": {
     "presets": [
