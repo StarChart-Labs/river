@@ -3,6 +3,7 @@ import { Button, Modal } from '@starchart-labs/flightdeck';
 
 let createProjectModal;
 let createProjectNameInput;
+const projectDeleteButtons = [];
 
 const functions = {
     loadProjectList() {
@@ -12,7 +13,15 @@ const functions = {
             })
         }).then((response) => {
             response.text().then((text) => {
+                // reload the projects list
                 $('#project-list').replaceWith(text);
+                // empty the list of project-delete buttons
+                projectDeleteButtons.length = 0;
+                // add the new project delete buttons and wire them up
+                $('.project-list-item button').each((i, item) => {
+                    projectDeleteButtons.push(new Button(item.id)
+                        .onClickAsync(() => functions.deleteProject(item.value)));
+                });
             });
         });
     },
@@ -30,6 +39,16 @@ const functions = {
             }).then(() => {
                 functions.loadProjectList();
                 createProjectModal.close();
+                resolve();
+            });
+        });
+    },
+    deleteProject(projectHref) {
+        return new Promise((resolve) => {
+            fetch(projectHref, {
+                method: 'DELETE'
+            }).then(() => {
+                functions.loadProjectList();
                 resolve();
             });
         });
