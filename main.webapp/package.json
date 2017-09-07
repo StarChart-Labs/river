@@ -32,7 +32,7 @@
     "less": "^2.7.2"
   },
   "dependencies": {
-    "@starchart-labs/flightdeck": "0.2.7",
+    "@starchart-labs/flightdeck": "0.2.8",
     "jquery": "^3.2.1"
   },
   "babel": {

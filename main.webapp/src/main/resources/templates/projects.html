@@ -2,8 +2,9 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:og="http://ogp.me/ns#">
 	<body>
 		<div id="project-list" th:fragment="project-list">
-			<div class="project-list-item" th:each="item : ${items}">
-				<span th:text="${item.name}"></span>
+			<div class="project-list-item" th:each="item, itrStat : ${items}">
+				<div class="name" th:text="${item.name}"></div>
+				<button class="btn btn-negative" th:id="|btn-delete-${itrStat.index}|" th:value="${item.metaData.href}">Delete</button>
 			</div>
 		</div>
 	</body>
