@@ -1,6 +1,6 @@
 # River
 
-[![Travis CI](https://img.shields.io/travis/StarChart-Labs/river.svg?branch=master)](https://travis-ci.org/StarChart-Labs/river)
+[![Travis CI](https://img.shields.io/travis/StarChart-Labs/river.svg?branch=master)](https://travis-ci.org/StarChart-Labs/river) [![Black Duck Security Risk](https://copilot.blackducksoftware.com/github/repos/StarChart-Labs/river/branches/master/badge-risk.svg)](https://copilot.blackducksoftware.com/github/repos/StarChart-Labs/river/branches/master)
 
 Go with the user flow
 
