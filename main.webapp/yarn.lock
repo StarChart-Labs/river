@@ -2,9 +2,9 @@
 # yarn lockfile v1
 
 
-"@starchart-labs/flightdeck@0.2.7":
-  version "0.2.7"
-  resolved "https://registry.yarnpkg.com/@starchart-labs/flightdeck/-/flightdeck-0.2.7.tgz#70c4269a3888e4f193becac5f2005c3ead64ccb1"
+"@starchart-labs/flightdeck@0.2.8":
+  version "0.2.8"
+  resolved "https://registry.yarnpkg.com/@starchart-labs/flightdeck/-/flightdeck-0.2.8.tgz#74e9d342c764dbf98e7c54874b7f4f145c511317"
 
 abbrev@1:
   version "1.1.0"

@@ -47,3 +47,27 @@ run {
 clean.dependsOn yarn_cache_clean
 build.dependsOn yarn_install, grunt_prod
 run.dependsOn gruntDev
+
+task stageDockerDependencies(dependsOn: jar) {
+	mkdir "${buildDir}/staged"
+
+	//Define the inputs and outputs, as we don't use the default copy properties
+	//Use build.gradle as input for configuration copies
+	inputs.files configurations.runtime
+	inputs.files jar
+	
+	outputs.dir "${buildDir}/staged"
+	
+	doLast{		
+		//Application staging
+		copy {
+			into "${buildDir}/staged/libs"
+			from configurations.runtime
+		}
+		copy {
+			into "${buildDir}/staged/libs"
+			from jar
+		}
+	}
+}
+
