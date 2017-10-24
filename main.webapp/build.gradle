@@ -4,6 +4,10 @@ apply plugin: 'com.moowork.grunt'
 
 mainClassName = "org.starchartlabs.river.main.webapp.River"
 
+sourceSets {
+    docker {}
+}
+
 //Dependency versions managed in $rootDir/dependencies.lock
 dependencies {
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-web'
@@ -48,35 +52,33 @@ clean.dependsOn yarn_cache_clean
 build.dependsOn yarn_install, grunt_prod
 run.dependsOn gruntDev
 
-def dockerResourcesDir = "${rootDir}/docker"
-
-task dockerStage(dependsOn: jar) {
-	// Delete the libs dir if present
-	delete "${dockerResourcesDir}/libs"
-	// Create libs directory fresh
-	mkdir "${dockerResourcesDir}/libs"
-
-	//Define the inputs and outputs, as we don't use the default copy properties
-	//Use build.gradle as input for configuration copies
-	inputs.files configurations.runtime
-	inputs.files jar
-	
-	outputs.dir "${dockerResourcesDir}/libs"
-	
-	doLast{		
-		//Application staging
-		copy {
-			into "${dockerResourcesDir}/libs"
-			from configurations.runtime
-		}
-		copy {
-			into "${dockerResourcesDir}/libs"
-			from jar
-		}
-	}
+task dockerStage(dependsOn: [processDockerResources, jar]) {
+    //Define the inputs and outputs, as we don't use the default copy properties
+    //Use build.gradle as input for configuration copies
+    inputs.files configurations.runtime
+    inputs.files jar
+    
+    outputs.dir sourceSets.docker.output.resourcesDir
+    
+    doLast{
+        File libsDir = new File(sourceSets.docker.output.resourcesDir, 'libs')
+        
+        // Create libs directory fresh
+        mkdir libsDir
+        
+        //Application staging
+        copy {
+            into libsDir
+            from configurations.runtime
+        }
+        copy {
+            into libsDir
+            from jar
+        }
+    }
 }
 
 task dockerBuild(type: Exec, dependsOn: dockerStage) {
 	executable = 'docker'
-    args = ['build', "${dockerResourcesDir}", "--tag=starchart-labs/river:${version}"]
+    args = ['build', "${sourceSets.docker.output.resourcesDir.absolutePath}", "--tag=starchart-labs/river:${version}"]
 }
