@@ -1,6 +1,7 @@
 apply plugin: 'application'
 apply plugin: 'com.moowork.node'
 apply plugin: 'com.moowork.grunt'
+apply plugin: 'org.starchartlabs.flare.docker-build'
 
 mainClassName = "org.starchartlabs.river.main.webapp.River"
 
@@ -37,6 +38,17 @@ node {
     download = true
 }
 
+containers{
+    main{
+        baseName='starchart-labs/river'
+        contents{
+          from ( sourceSets.docker.resources ) { into '' }
+          from (configurations.runtime) { into 'libs' }
+          from (jar) { into 'libs' }
+        }
+    }
+}
+
 //Background task for grunt task type: see ${rootDir}/buildSrc/src/main/groovy/GruntAsync.groovy
 task gruntDev(type: GruntAsync, dependsOn: yarn_install) {
     args = ['dev']
@@ -51,34 +63,3 @@ run {
 clean.dependsOn yarn_cache_clean
 build.dependsOn yarn_install, grunt_prod
 run.dependsOn gruntDev
-
-task dockerStage(dependsOn: [processDockerResources, jar]) {
-    //Define the inputs and outputs, as we don't use the default copy properties
-    //Use build.gradle as input for configuration copies
-    inputs.files configurations.runtime
-    inputs.files jar
-    
-    outputs.dir sourceSets.docker.output.resourcesDir
-    
-    doLast{
-        File libsDir = new File(sourceSets.docker.output.resourcesDir, 'libs')
-        
-        // Create libs directory fresh
-        mkdir libsDir
-        
-        //Application staging
-        copy {
-            into libsDir
-            from configurations.runtime
-        }
-        copy {
-            into libsDir
-            from jar
-        }
-    }
-}
-
-task dockerBuild(type: Exec, dependsOn: dockerStage) {
-	executable = 'docker'
-    args = ['build', "${sourceSets.docker.output.resourcesDir.absolutePath}", "--tag=starchart-labs/river:${version}"]
-}
