@@ -1,0 +1,36 @@
+= River REST API
+:doctype: book
+:icons: font
+:toc: left
+:source-highlighter: highlightjs
+
+== Overview
+
+River's REST API allows access to and manipulation of data from the River server by clients and integrations.
+This documentation will describe the available endpoints, and their inputs and outputs
+
+== Projects
+
+=== Projects List
+
+Gets a list of all the projects available on the system
+
+The HTTP request:
+
+include::{snippets}/projects/http-request.adoc[]
+
+The body of the response:
+
+include::{snippets}/projects/response-body.adoc[]
+
+=== Individual Project
+
+Gets a single project by its identifier
+
+The HTTP request:
+
+include::{snippets}/project/http-request.adoc[]
+
+The body of the response:
+
+include::{snippets}/project/response-body.adoc[]
