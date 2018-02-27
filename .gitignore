@@ -6,3 +6,4 @@
 /*/build/
 /docker/libs/
 /*/test-output/
+/main.webapp/src/main/resources/static/*
