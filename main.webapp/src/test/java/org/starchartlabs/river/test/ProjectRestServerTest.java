@@ -9,6 +9,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.restdocs.ManualRestDocumentation;
+import org.springframework.restdocs.hypermedia.HypermediaDocumentation;
 import org.springframework.restdocs.mockmvc.MockMvcRestDocumentation;
 import org.springframework.restdocs.operation.preprocess.Preprocessors;
 import org.springframework.restdocs.payload.PayloadDocumentation;
@@ -24,6 +25,7 @@ import org.starchartlabs.river.main.webapp.app.model.PageView;
 import org.starchartlabs.river.main.webapp.app.model.ProjectView;
 import org.starchartlabs.river.main.webapp.app.model.RequestPaths;
 import org.starchartlabs.river.main.webapp.server.impl.ProjectRestServer;
+import org.starchartlabs.river.test.util.StarchartLinkExtractor;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
@@ -90,7 +92,9 @@ public class ProjectRestServerTest extends AbstractTestNGSpringContextTests {
                         PayloadDocumentation.fieldWithPath("name")
                             .description("The name of the project"),
                         PayloadDocumentation.subsectionWithPath("_meta")
-                            .description("Meta data describing the response"))));
+                            .description("Meta data describing the response")),
+               HypermediaDocumentation.links(new StarchartLinkExtractor(),
+                       HypermediaDocumentation.linkWithRel("userflows").description("Link to the user-flows for this project"))));
     }
     
 }

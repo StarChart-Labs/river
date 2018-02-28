@@ -47,7 +47,8 @@ test {
 
 asciidoctor { 
 	inputs.dir snippetsDir 
-	dependsOn test 
+	dependsOn test
+	attributes 'stylesheet': 'docs.css'
 }
 
 node {
