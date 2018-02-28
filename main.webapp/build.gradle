@@ -1,3 +1,7 @@
+plugins { 
+	id "org.asciidoctor.convert" version "1.5.6"
+}
+
 apply plugin: 'application'
 apply plugin: 'com.moowork.node'
 apply plugin: 'com.moowork.grunt'
@@ -15,12 +19,35 @@ dependencies {
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-actuator'
     
     compile group: 'org.thymeleaf', name: 'thymeleaf'
-    compile group: 'org.thymeleaf', name: 'thymeleaf-spring4'
+    compile group: 'org.thymeleaf', name: 'thymeleaf-spring5'
     
     compile group: 'com.github.rjeschke', name: 'txtmark'
     
     compile group: 'com.google.code.findbugs', name: 'jsr305'
     compile group: 'com.google.guava', name: 'guava'
+    
+    asciidoctor group: 'org.springframework.restdocs', name: 'spring-restdocs-asciidoctor'
+	testCompile group: 'org.springframework.restdocs', name: 'spring-restdocs-mockmvc'
+	
+	testCompile(group: 'org.springframework.boot', name: 'spring-boot-starter-test') {
+		exclude group: 'junit', module: 'junit;'
+	}
+	
+    testCompile group: 'org.testng', name: 'testng'
+}
+
+ext { 
+	snippetsDir = file('build/generated-snippets')
+}
+
+test { 
+	useTestNG()
+	outputs.dir snippetsDir
+}
+
+asciidoctor { 
+	inputs.dir snippetsDir 
+	dependsOn test 
 }
 
 node {
@@ -36,6 +63,12 @@ node {
     // If true, it will download node using above parameters.
     // If false, it will try to use globally installed node.
     download = true
+}
+
+task copyDocs(type: Copy) {
+	dependsOn asciidoctor 
+	from "${asciidoctor.outputDir}/html5"
+	into "${projectDir}/src/main/resources/static/docs"
 }
 
 containers{
@@ -54,7 +87,7 @@ task gruntDev(type: GruntAsync, dependsOn: yarn_install) {
     args = ['dev']
 }
 
-run {
+run {	
 	// Remove the "built" UI resources and use the sources instead, allowing viewing of changes without a restart
 	classpath += files(sourceSets.main.resources.srcDirs)
 	classpath -= files(sourceSets.main.output.resourcesDir)
@@ -62,4 +95,4 @@ run {
 
 clean.dependsOn yarn_cache_clean
 build.dependsOn yarn_install, grunt_prod
-run.dependsOn gruntDev
+run.dependsOn gruntDev, copyDocs
