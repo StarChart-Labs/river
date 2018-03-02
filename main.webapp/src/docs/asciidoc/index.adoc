@@ -34,3 +34,8 @@ include::{snippets}/project/http-request.adoc[]
 The body of the response:
 
 include::{snippets}/project/response-body.adoc[]
+include::{snippets}/project/response-fields.adoc[]
+
+The links are as follows:
+
+include::{snippets}/project/links.adoc[]
