@@ -17,7 +17,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class StarchartLinkExtractor implements LinkExtractor {
 
     private final ObjectMapper objectMapper = new ObjectMapper();
-
+    
+    // TODO nickavv pending Spring Restdoc accepting my pull request, 
+    // this class could extend AbstractJsonLinkExtractor and be simplified
     @Override
     public Map<String, List<Link>> extractLinks(OperationResponse response)
             throws IOException {
