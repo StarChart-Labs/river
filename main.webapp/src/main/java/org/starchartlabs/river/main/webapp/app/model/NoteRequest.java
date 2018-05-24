@@ -14,11 +14,11 @@ import java.util.Objects;
 
 import javax.annotation.Nullable;
 
+import org.starchartlabs.alloy.core.MoreObjects;
 import org.starchartlabs.river.main.webapp.domain.model.NoteType;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.google.common.base.MoreObjects;
 
 //TODO romeara doc test
 public class NoteRequest {
