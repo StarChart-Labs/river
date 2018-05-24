@@ -16,8 +16,8 @@ import java.util.UUID;
 
 import javax.annotation.Nullable;
 
-import com.google.common.base.MoreObjects;
-import com.google.common.collect.Comparators;
+import org.starchartlabs.alloy.core.Comparators;
+import org.starchartlabs.alloy.core.MoreObjects;
 
 //TODO romeara doc test
 public class Note extends NoteFields implements Comparable<Note> {

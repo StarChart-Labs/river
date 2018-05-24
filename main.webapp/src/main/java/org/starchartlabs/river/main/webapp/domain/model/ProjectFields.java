@@ -14,7 +14,7 @@ import java.util.Objects;
 
 import javax.annotation.Nullable;
 
-import com.google.common.base.MoreObjects;
+import org.starchartlabs.alloy.core.MoreObjects;
 
 //TODO romeara doc, test
 public class ProjectFields {

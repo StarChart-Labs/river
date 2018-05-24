@@ -1,6 +1,7 @@
 package org.starchartlabs.river.test;
 
 import java.lang.reflect.Method;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -31,22 +32,20 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import com.google.common.collect.Lists;
-
 public class ProjectRestServerTest extends AbstractTestNGSpringContextTests {
 
     @Mock
     private IProjectAppService projectAppService;
-    
+
     private final ManualRestDocumentation restDocumentation = new ManualRestDocumentation();
-    
+
     private MockMvc mockMvc;
-    
+
     @BeforeTest
     public void setup() {
         MockitoAnnotations.initMocks(this);
     }
-    
+
     @BeforeMethod
     public void setUp(Method method) {
         this.mockMvc = MockMvcBuilders.standaloneSetup(new ProjectRestServer(projectAppService))
@@ -56,45 +55,48 @@ public class ProjectRestServerTest extends AbstractTestNGSpringContextTests {
                 .build();
         this.restDocumentation.beforeTest(getClass(), method.getName());
     }
-    
+
     @AfterMethod
     public void tearDown() {
         this.restDocumentation.afterTest();
     }
-    
+
     @Test
     public void projects() throws Exception {
         UUID projectId = UUID.randomUUID();
-        List<LinkView> links = Lists.newArrayList(new LinkView("userflows", RequestPaths.getUserFlowListUrl(projectId)));
+        List<LinkView> links = Collections
+                .singletonList(new LinkView("userflows", RequestPaths.getUserFlowListUrl(projectId)));
         ProjectView project = new ProjectView("Sample Project", new MetaDataView(RequestPaths.getProjectUrl(projectId), links));
-        
+
         Mockito.when(projectAppService.get())
-        .thenReturn(new PageView<>(Lists.newArrayList(project), new MetaDataView(RequestPaths.getProjectUrl(projectId))));
-        
+                .thenReturn(new PageView<>(Collections.singletonList(project),
+                        new MetaDataView(RequestPaths.getProjectUrl(projectId))));
+
         this.mockMvc.perform(MockMvcRequestBuilders.get("/projects"))
-            .andExpect(MockMvcResultMatchers.status().isOk())
-            .andDo(MockMvcRestDocumentation.document("projects"));
+        .andExpect(MockMvcResultMatchers.status().isOk())
+        .andDo(MockMvcRestDocumentation.document("projects"));
     }
-    
+
     @Test
     public void singleProject() throws Exception {
         UUID projectId = UUID.randomUUID();
-        List<LinkView> links = Lists.newArrayList(new LinkView("userflows", RequestPaths.getUserFlowListUrl(projectId)));
+        List<LinkView> links = Collections
+                .singletonList(new LinkView("userflows", RequestPaths.getUserFlowListUrl(projectId)));
         ProjectView project = new ProjectView("Sample Project", new MetaDataView(RequestPaths.getProjectUrl(projectId), links));
-        
+
         Mockito.when(projectAppService.get(projectId))
         .thenReturn(Optional.of(project));
-        
+
         this.mockMvc.perform(MockMvcRequestBuilders.get("/projects/" + projectId.toString()))
         .andExpect(MockMvcResultMatchers.status().isOk())
         .andDo(MockMvcRestDocumentation.document("project",
                 PayloadDocumentation.responseFields(
                         PayloadDocumentation.fieldWithPath("name")
-                            .description("The name of the project"),
+                        .description("The name of the project"),
                         PayloadDocumentation.subsectionWithPath("_meta")
-                            .description("Meta data describing the response")),
-               HypermediaDocumentation.links(new StarchartLinkExtractor(),
-                       HypermediaDocumentation.linkWithRel("userflows").description("Link to the user-flows for this project"))));
+                        .description("Meta data describing the response")),
+                HypermediaDocumentation.links(new StarchartLinkExtractor(),
+                        HypermediaDocumentation.linkWithRel("userflows").description("Link to the user-flows for this project"))));
     }
-    
+
 }

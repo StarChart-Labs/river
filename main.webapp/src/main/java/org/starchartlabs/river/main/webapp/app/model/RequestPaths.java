@@ -10,11 +10,12 @@
  */
 package org.starchartlabs.river.main.webapp.app.model;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 import java.util.UUID;
 
 import org.starchartlabs.river.main.webapp.app.util.UriBuilders;
-
-import com.google.common.collect.ImmutableMap;
 
 //TODO romeara doc
 public class RequestPaths {
@@ -53,76 +54,118 @@ public class RequestPaths {
     }
 
     public static String getProjectUrl(UUID projectId) {
+        Objects.requireNonNull(projectId);
+
+        Map<String, String> values = new HashMap<>();
+        values.put("projectId", projectId.toString());
+
         return UriBuilders.getLocalServerUriBuilder()
                 .path(PROJECT)
-                .buildAndExpand(ImmutableMap.of(
-                        "projectId", projectId.toString()))
+                .buildAndExpand(values)
                 .toUriString();
     }
 
     public static String getUserFlowListUrl(UUID projectId) {
+        Objects.requireNonNull(projectId);
+
+        Map<String, String> values = new HashMap<>();
+        values.put("projectId", projectId.toString());
+
         return UriBuilders.getLocalServerUriBuilder()
                 .path(USER_FLOW_LIST)
-                .buildAndExpand(ImmutableMap.of(
-                        "projectId", projectId.toString()))
+                .buildAndExpand(values)
                 .toUriString();
     }
 
     public static String getUserFlowUrl(UUID projectId, UUID userFlowId) {
+        Objects.requireNonNull(projectId);
+        Objects.requireNonNull(userFlowId);
+
+        Map<String, String> values = new HashMap<>();
+        values.put("projectId", projectId.toString());
+        values.put("userFlowId", userFlowId.toString());
+
         return UriBuilders.getLocalServerUriBuilder()
                 .path(USER_FLOW)
-                .buildAndExpand(ImmutableMap.of(
-                        "projectId", projectId.toString(),
-                        "userFlowId", userFlowId.toString()))
+                .buildAndExpand(values)
                 .toUriString();
     }
 
     public static String getExperienceListUrl(UUID projectId, UUID userFlowId) {
+        Objects.requireNonNull(projectId);
+        Objects.requireNonNull(userFlowId);
+
+        Map<String, String> values = new HashMap<>();
+        values.put("projectId", projectId.toString());
+        values.put("userFlowId", userFlowId.toString());
+
         return UriBuilders.getLocalServerUriBuilder()
                 .path(EXPERIENCE_LIST)
-                .buildAndExpand(ImmutableMap.of(
-                        "projectId", projectId.toString(),
-                        "userFlowId", userFlowId.toString()))
+                .buildAndExpand(values)
                 .toUriString();
     }
 
     public static String getExperienceCreateUrl(UUID projectId, UUID userFlowId) {
+        Objects.requireNonNull(projectId);
+        Objects.requireNonNull(userFlowId);
+
+        Map<String, String> values = new HashMap<>();
+        values.put("projectId", projectId.toString());
+        values.put("userFlowId", userFlowId.toString());
+
         return UriBuilders.getLocalServerUriBuilder()
                 .path(EXPERIENCE_CREATE)
-                .buildAndExpand(ImmutableMap.of(
-                        "projectId", projectId.toString(),
-                        "userFlowId", userFlowId.toString()))
+                .buildAndExpand(values)
                 .toUriString();
     }
 
     public static String getExperienceUrl(UUID projectId, UUID userFlowId, UUID experienceId) {
+        Objects.requireNonNull(projectId);
+        Objects.requireNonNull(userFlowId);
+        Objects.requireNonNull(experienceId);
+
+        Map<String, String> values = new HashMap<>();
+        values.put("projectId", projectId.toString());
+        values.put("userFlowId", userFlowId.toString());
+        values.put("experienceId", experienceId.toString());
+
         return UriBuilders.getLocalServerUriBuilder()
                 .path(EXPERIENCE)
-                .buildAndExpand(ImmutableMap.of(
-                        "projectId", projectId.toString(),
-                        "userFlowId", userFlowId.toString(),
-                        "experienceId", experienceId.toString()))
+                .buildAndExpand(values)
                 .toUriString();
     }
 
     public static String getNoteListUrl(UUID projectId, UUID userFlowId, UUID experienceId) {
+        Objects.requireNonNull(projectId);
+        Objects.requireNonNull(userFlowId);
+        Objects.requireNonNull(experienceId);
+
+        Map<String, String> values = new HashMap<>();
+        values.put("projectId", projectId.toString());
+        values.put("userFlowId", userFlowId.toString());
+        values.put("experienceId", experienceId.toString());
+
         return UriBuilders.getLocalServerUriBuilder()
                 .path(NOTE_LIST)
-                .buildAndExpand(ImmutableMap.of(
-                        "projectId", projectId.toString(),
-                        "userFlowId", userFlowId.toString(),
-                        "experienceId", experienceId.toString()))
+                .buildAndExpand(values)
                 .toUriString();
     }
 
     public static String getNoteUrl(UUID projectId, UUID userFlowId, UUID experienceId, UUID noteId) {
+        Objects.requireNonNull(projectId);
+        Objects.requireNonNull(userFlowId);
+        Objects.requireNonNull(experienceId);
+        Objects.requireNonNull(noteId);
+
+        Map<String, String> values = new HashMap<>();
+        values.put("projectId", projectId.toString());
+        values.put("userFlowId", userFlowId.toString());
+        values.put("experienceId", experienceId.toString());
+        values.put("noteId", noteId.toString());
+
         return UriBuilders.getLocalServerUriBuilder()
                 .path(NOTE)
-                .buildAndExpand(ImmutableMap.of(
-                        "projectId", projectId.toString(),
-                        "userFlowId", userFlowId.toString(),
-                        "experienceId", experienceId.toString(),
-                        "noteId", noteId.toString()))
+                .buildAndExpand(values)
                 .toUriString();
     }
 }
